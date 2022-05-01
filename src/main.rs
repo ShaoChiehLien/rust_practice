@@ -18,6 +18,7 @@ use rust_crash_course::structs;
 use rust_crash_course::enums;
 
 use rust_programming_lang_book::ownership;
+use rust_programming_lang_book::borrow;
 
 // Entry Point
 fn main() {
@@ -52,7 +53,9 @@ fn main() {
         enums::run();
     } else if command == "ownership.rs" {
         ownership::run();
-    } else {
+    } else if command == "borrow.rs" {
+        borrow::run();
+    }else {
         println!("The script cannot be found!");
     }
 }
