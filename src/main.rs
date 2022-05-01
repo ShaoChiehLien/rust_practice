@@ -1,18 +1,23 @@
 use std::env;
 
-mod print;
-mod vars;
-mod types;
-mod strings;
-mod tuples;
-mod arrays;
-mod vectors;
-mod conditionals;
-mod loops;
-mod functions;
-mod pointer_ref;
-mod structs;
-mod enums;
+mod rust_crash_course;
+mod rust_programming_lang_book;
+
+use rust_crash_course::print;
+use rust_crash_course::vars;
+use rust_crash_course::types;
+use rust_crash_course::strings;
+use rust_crash_course::tuples;
+use rust_crash_course::arrays;
+use rust_crash_course::vectors;
+use rust_crash_course::conditionals;
+use rust_crash_course::loops;
+use rust_crash_course::functions;
+use rust_crash_course::pointer_ref;
+use rust_crash_course::structs;
+use rust_crash_course::enums;
+
+use rust_programming_lang_book::ownership;
 
 // Entry Point
 fn main() {
@@ -45,6 +50,8 @@ fn main() {
         structs::run();
     } else if command == "enums.rs" {
         enums::run();
+    } else if command == "ownership.rs" {
+        ownership::run();
     } else {
         println!("The script cannot be found!");
     }
