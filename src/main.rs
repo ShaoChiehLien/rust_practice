@@ -19,6 +19,7 @@ use rust_crash_course::enums;
 
 use rust_programming_lang_book::ownership;
 use rust_programming_lang_book::borrow;
+use rust_programming_lang_book::slice;
 
 // Entry Point
 fn main() {
@@ -55,7 +56,9 @@ fn main() {
         ownership::run();
     } else if command == "borrow.rs" {
         borrow::run();
-    }else {
+    } else if command == "slice.rs" {
+        slice::run();
+    } else {
         println!("The script cannot be found!");
     }
 }
