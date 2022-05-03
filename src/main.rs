@@ -21,6 +21,7 @@ use rust_programming_lang_book::ownership;
 use rust_programming_lang_book::borrow;
 use rust_programming_lang_book::slice;
 use rust_programming_lang_book::reference;
+use rust_programming_lang_book::advanced_struct;
 
 // Entry Point
 fn main() {
@@ -61,6 +62,8 @@ fn main() {
         slice::run();
     } else if command == "reference.rs" {
         reference::run();
+    } else if command == "advanced_struct.rs" {
+        advanced_struct::run();
     } else {
         println!("The script cannot be found!");
     }
