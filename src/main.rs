@@ -22,6 +22,7 @@ use rust_programming_lang_book::borrow;
 use rust_programming_lang_book::slice;
 use rust_programming_lang_book::reference;
 use rust_programming_lang_book::advanced_struct;
+use rust_programming_lang_book::advanced_string;
 
 // Entry Point
 fn main() {
@@ -64,6 +65,8 @@ fn main() {
         reference::run();
     } else if command == "advanced_struct.rs" {
         advanced_struct::run();
+    } else if command == "advanced_string.rs" {
+        advanced_string::run();
     } else {
         println!("The script cannot be found!");
     }
