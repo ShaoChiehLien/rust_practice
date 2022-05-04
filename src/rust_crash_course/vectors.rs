@@ -57,13 +57,15 @@ fn vector_iteration () {
     // Loop and mutate value with iter_mut
     for x in numbers.iter_mut() { // iter_mut returns mutable reference of numbers
         // Arithmetic operator's signature is self instead of &self, so we dereference x (type &mut)
+        // Add's signature: fn add(self, s: &str) -> String {}
         *x *= 2; // multiply each number by 2
     }
     println!("Loop and mutate value with iter_mut: {:?}", numbers);
 
     // Loop and mutate value with mutable reference
     for x in &mut numbers {// &mut returns mutable reference of numbers
-        // AArithmetic operator's signature is self instead of &self, so we dereference x (type &mut)
+        // Arithmetic operator's signature is self instead of &self, so we dereference x (type &mut)
+        // Add's signature: fn add(self, s: &str) -> String {}
         *x *= 2; // multiply each number by 2
     }
     println!("Loop and mutate value with mutable reference: {:?}", numbers);
