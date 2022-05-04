@@ -18,8 +18,10 @@ pub fn run() {
     // Push char
     hello.push('W');
 
-    // Push string
+    // Push string: push_str takes stack data string slice (&str) so it doesn't takes ownership
+    let orld = "orld";
     hello.push_str("orld!");
+    println!("push_str doesn't take ownership: hello: {:?}, orld: {:?}", hello, orld);
 
     // Capacity in bytes
     println!("Capacity: {}", hello.capacity());
