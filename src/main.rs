@@ -23,6 +23,7 @@ use rust_programming_lang_book::slice;
 use rust_programming_lang_book::reference;
 use rust_programming_lang_book::advanced_struct;
 use rust_programming_lang_book::advanced_string;
+use rust_programming_lang_book::hash_maps;
 
 // Entry Point
 fn main() {
@@ -67,6 +68,8 @@ fn main() {
         advanced_struct::run();
     } else if command == "advanced_string.rs" {
         advanced_string::run();
+    } else if command == "hash_maps.rs" {
+        hash_maps::run();
     } else {
         println!("The script cannot be found!");
     }
