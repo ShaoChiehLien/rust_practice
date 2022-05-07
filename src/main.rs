@@ -1,8 +1,17 @@
+// A package can have multiple crates. For example, a library would have 
+// library crates along with binary crate that it used in the library
+// main.rs means that this is a binary crate
+// lib.rs means that it is a library crate
+// There can be a tree of modules under a crate
 use std::env;
 
-mod rust_crash_course;
-mod rust_programming_lang_book;
+// creating a module named rust_crash course
+// if this is a lib.rs, people can use rust_crash_course if it's made public
+pub mod rust_crash_course;
+pub mod rust_programming_lang_book; 
 
+// In our case, we use syntax "use" to bring the namespace (print, var, etc) in 
+// to make it simpler to call the function
 use rust_crash_course::{print, vars, types, strings, tuples, arrays,
                         vectors, conditionals, loops, functions,
                         pointer_ref, structs, enums};
