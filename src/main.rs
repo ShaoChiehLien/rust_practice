@@ -3,28 +3,13 @@ use std::env;
 mod rust_crash_course;
 mod rust_programming_lang_book;
 
-use rust_crash_course::print;
-use rust_crash_course::vars;
-use rust_crash_course::types;
-use rust_crash_course::strings;
-use rust_crash_course::tuples;
-use rust_crash_course::arrays;
-use rust_crash_course::vectors;
-use rust_crash_course::conditionals;
-use rust_crash_course::loops;
-use rust_crash_course::functions;
-use rust_crash_course::pointer_ref;
-use rust_crash_course::structs;
-use rust_crash_course::enums;
+use rust_crash_course::{print, vars, types, strings, tuples, arrays,
+                        vectors, conditionals, loops, functions,
+                        pointer_ref, structs, enums};
 
-use rust_programming_lang_book::ownership;
-use rust_programming_lang_book::borrow;
-use rust_programming_lang_book::slice;
-use rust_programming_lang_book::reference;
-use rust_programming_lang_book::advanced_struct;
-use rust_programming_lang_book::advanced_string;
-use rust_programming_lang_book::hash_maps;
-use rust_programming_lang_book::generic_types;
+use rust_programming_lang_book::{ownership, borrow, slice, reference,
+                        advanced_struct, advanced_string, hash_maps,
+                        generic_types};
 
 // Entry Point
 fn main() {
