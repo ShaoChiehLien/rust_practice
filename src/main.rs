@@ -18,7 +18,7 @@ use rust_crash_course::{print, vars, types, strings, tuples, arrays,
 
 use rust_programming_lang_book::{ownership, borrow, slice, reference,
                         advanced_struct, advanced_string, hash_maps,
-                        generic_types, traits};
+                        generic_types, traits, unsolved_question};
 
 // Entry Point
 fn main() {
@@ -69,6 +69,8 @@ fn main() {
         generic_types::run();
     } else if command == "traits.rs" {
         traits::run();
+    } else if command == "unsolved_question.rs" {
+        unsolved_question::run();
     } else {
         println!("The script cannot be found!");
     }

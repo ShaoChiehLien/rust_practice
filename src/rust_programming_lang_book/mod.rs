@@ -7,3 +7,4 @@ pub mod advanced_string;
 pub mod hash_maps;
 pub mod generic_types;
 pub mod traits;
+pub mod unsolved_question;
