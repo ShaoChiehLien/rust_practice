@@ -2,9 +2,11 @@
 // Use generic type parameter bound (T: PartialOrd) to
 // make sure all type that uses largest needs to impl
 // PartialOrd traits
+// https://stackoverflow.com/questions/61169889/vectors-borrowing-and-ownership
 fn largest<T: PartialOrd + Copy>(list: &[T]) -> T{
     let mut largest = list[0];
 
+    // list return reference to each element 
     for &item in list {
         if largest < item {
             largest = item;
