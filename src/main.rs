@@ -18,7 +18,8 @@ use rust_crash_course::{print, vars, types, strings, tuples, arrays,
 
 use rust_programming_lang_book::{ownership, borrow, slice, reference,
                         advanced_struct, advanced_string, hash_maps,
-                        generic_types, traits, unsolved_question};
+                        generic_types, traits, unsolved_question,
+                        lifetimes};
 
 // Entry Point
 fn main() {
@@ -71,6 +72,8 @@ fn main() {
         traits::run();
     } else if command == "unsolved_question.rs" {
         unsolved_question::run();
+    } else if command == "lifetimes.rs" {
+        lifetimes::run();
     } else {
         println!("The script cannot be found!");
     }
