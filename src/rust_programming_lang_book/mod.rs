@@ -10,3 +10,4 @@ pub mod traits;
 pub mod unsolved_question;
 pub mod lifetimes;
 pub mod closures;
+pub mod iterator;
