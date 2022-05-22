@@ -65,7 +65,7 @@ fn next_vs_for_on_iterator() {
     }
 }
 
-#[derive(PartialEq, Debug)]
+#[derive(Debug)]
 struct Shoe {
     size: u32,
     style: String,
@@ -101,6 +101,49 @@ fn iterator_adaptor_example() {
     // println!("shoes: {:?}", shoes); // Error: shoes is consumed by the into_iter call
 }
 
+/************** Create own Iterators **************/
+#[derive(Debug)]
+struct Counter {
+    count: u32,
+}
+
+impl Counter {
+    fn new() -> Counter {
+        Counter {
+            count: 0
+        }
+    }
+}
+
+impl Iterator for Counter {
+    type Item = u32;
+
+    // Iterator that calls next needs to be mutable so the internal
+    // state could keep track where it is
+    // return an option with type of Item (u32)
+    fn next(&mut self) -> Option<Self::Item> {
+        if self.count < 5 {
+            self.count += 1;
+            Some(self.count)
+        } else {
+            None
+        }
+    }
+}
+
+fn call_own_iterator() {
+    for i in Counter::new().zip(Counter::new().skip(1)){
+        println!("{:?}", i);
+    }
+    let sum: u32 = Counter::new()
+        .zip(Counter::new().skip(1)) // (1, 2), (2, 3), (3, 4), (4, 5)
+        .map(|(a, b)| a * b) // 2, 6, 12, 20
+        .filter(|x| x % 3 == 0) // 6, 12
+        .sum(); // 18
+    println!("sum: {:?}", sum);
+}
+/********* End of Creating own Iterators *********/
+
 pub fn run() {
     println!("Next method vs for on iterator");
     next_vs_for_on_iterator();
@@ -116,4 +159,7 @@ pub fn run() {
 
     println!("\nIterator adaptor example: ");
     iterator_adaptor_example();
+
+    println!("\nCreating our own iterator example: ");
+    call_own_iterator();
 }
