@@ -233,91 +233,6 @@ fn example4() {
 }
 /***************** End of Example 4 *****************/
 
-/********************* Example 5 *********************/
-fn example5() {
-    println!("FnOnce with move");
-    let x = vec![1, 2, 3];
-    let my_fn_once = move || { // move: my_fn_once owns x
-        println!("{:?}", x);
-        x
-    };
-    my_fn_once();
-    // my_fn_once(); // Error: This closure can't be used twice
-    // since the closure lose the ownership of x after the first 
-    // call (FnOnce)
-    // println!("{:?}", x); // Error: The move sytax makes the closure
-    // take the ownership of the value x is holding
-
-    println!("FnMut with move");
-    let mut y = vec![1, 2, 3];
-    let mut my_fn_mut = move || { // move: my_fn_mut owns y
-        println!("{:?}", y);
-        y.push(4);};
-    my_fn_mut();
-    my_fn_mut();
-    // This closure can be used more than once since the closure
-    // still own the ownership of y, it's just appending y (FnMut)
-    // println!("{:?}", y); // Error: The move sytax makes the closure
-    // take the ownership of the value y is holding
-
-    println!("Fn with move");
-    let z = vec![1, 2, 3];
-    let my_fn = move || { // move: my_fn owns s
-        println!("{:?}", z);
-        z.len()};
-    my_fn();
-    my_fn();
-    // This closure can be used more than once since the closure
-    // still own the ownership of s, it's just showing len(s) (Fn)
-    // println!("{:?}", z); // Error: The move sytax makes the closure
-    // take the ownership of the value z is holding
-
-}
-/***************** End of Example 5 *****************/
-
-/********************* Example 6 *********************/
-fn example6() {
-    println!("FnOnce without move");
-    let x = vec![1, 2, 3];
-    let my_fn_once = || { // my_fn_once owns x
-        println!("{:?}", x);
-        x
-    };
-    my_fn_once();
-    // my_fn_once(); // Error: This closure can't be used twice since 
-    // the closure lose the ownership of x after the first call (FnOnce)
-    // println!("{:?}", x); // Error: The FnOnce would just get the  
-    // ownership of x since the body of closure needs the ownership
-
-    println!("FnMut without move");
-    let mut y = vec![1, 2, 3];
-    let mut my_fn_mut = || { // my_fn_mut owns y
-        println!("{:?}", y);
-        y.push(4);};
-    my_fn_mut();
-    my_fn_mut();
-    // This closure can be used more than once since the closure
-    // still own the ownership of y, it's just appending y (FnMut)
-    println!("{:?}", y); 
-    // The FnMut would just get the mutable reference of y since 
-    // the body of closure only needs a mutable reference
-
-    println!("Fn without move");
-    let z = vec![1, 2, 3];
-    let my_fn = || { // my_fn owns s
-        println!("{:?}", z);
-        z.len()};
-    my_fn();
-    my_fn();
-    // This closure can be used more than once since the closure
-    // still own the ownership of s, it's just showing len(s) (Fn)
-    println!("{:?}", z);
-    // The Fn would just get the immutable reference of z since 
-    // the body of closure only needs a immutable reference
-
-}
-/***************** End of Example 6 *****************/
-
 pub fn run() {
     println!("Example 1");
     example1();
@@ -331,12 +246,4 @@ pub fn run() {
 
     println!("Example 4: Use a struct for closure");
     example4();
-    
-    println!("Example 5: Difference between FnOnce, FnMut, and \
-        Fn with move");
-    example5();
-
-    println!("Example 6: Difference between FnOnce, FnMut, and \
-        Fn without move");
-    example6();
 }
