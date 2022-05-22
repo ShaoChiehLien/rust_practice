@@ -57,12 +57,48 @@ fn next_vs_for_on_iterator() {
 
     // v2_iter doesn't need to be mutable since for loop took 
     // ownership of v2_iter and make it mutable behind the scene
-    let v2 = vec![String::from("1"), 
+    let v2 = vec![String::from("1"),
         String::from("2"), String::from("3")];
     let v2_iter = v2.iter();
     for item in v2_iter {
         println!("{}", item);
     }
+}
+
+#[derive(PartialEq, Debug)]
+struct Shoe {
+    size: u32,
+    style: String,
+}
+
+fn iterator_adaptor_example() {
+    // shoes own the vec
+    let mut shoes = vec![
+        Shoe {
+            size: 10,
+            style: String::from("sneaker"),
+        },
+        Shoe {
+            size: 13,
+            style: String::from("sandal"),
+        },
+        Shoe {
+            size: 10,
+            style: String::from("boot"),
+        },
+    ];
+    println!("shoes: {:?}", shoes);
+
+    // iter_mut iterate mutable reference of shoes, any modification made
+    // with affect shoes as well
+    let v2: Vec<_> = shoes.iter_mut().map(|x| {x.size += 2; x}).collect();
+    println!("v2: {:?}", v2); // v2's element is a reference to shoes vector
+    println!("shoes: {:?}", shoes);
+
+    // into_iter consume shoes and return owned element of shoes
+    let v3: Vec<_> = shoes.into_iter().filter(|s| s.style.eq(&String::from("sandal"))).collect();
+    println!("v3: {:?}", v3); // v3's element is an owned element
+    // println!("shoes: {:?}", shoes); // Error: shoes is consumed by the into_iter call
 }
 
 pub fn run() {
@@ -76,5 +112,8 @@ pub fn run() {
     into_iter_example();
 
     println!("\nIterator iter_mut example: ");
-    iter_mut_example()
+    iter_mut_example();
+
+    println!("\nIterator adaptor example: ");
+    iterator_adaptor_example();
 }
