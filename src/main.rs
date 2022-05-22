@@ -19,7 +19,7 @@ use rust_crash_course::{print, vars, types, strings, tuples, arrays,
 use rust_programming_lang_book::{ownership, borrow, slice, reference,
                         advanced_struct, advanced_string, hash_maps,
                         generic_types, traits, unsolved_question,
-                        lifetimes, closures, iterator};
+                        lifetimes, closures, fn_traits, iterator};
 
 // Entry Point
 fn main() {
@@ -76,6 +76,8 @@ fn main() {
         lifetimes::run();
     } else if command == "closures.rs" {
         closures::run();
+    } else if command == "fn_traits.rs" {
+        fn_traits::run();
     } else if command == "iterator.rs" {
         iterator::run();
     } else {
