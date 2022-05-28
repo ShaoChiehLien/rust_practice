@@ -19,7 +19,8 @@ use rust_crash_course::{print, vars, types, strings, tuples, arrays,
 use rust_programming_lang_book::{ownership, borrow, slice, reference,
                         advanced_struct, advanced_string, hash_maps,
                         generic_types, traits, unsolved_question,
-                        lifetimes, closures, fn_traits, iterator};
+                        lifetimes, closures, fn_traits, iterator,
+                        smart_pointers};
 
 // Entry Point
 fn main() {
@@ -80,6 +81,8 @@ fn main() {
         fn_traits::run();
     } else if command == "iterator.rs" {
         iterator::run();
+    } else if command == "smart_pointers.rs" {
+        smart_pointers::run();
     } else {
         println!("The script cannot be found!");
     }
