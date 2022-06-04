@@ -1,5 +1,6 @@
 use std::ops::Deref;
 use std::ops::DerefMut;
+use std::rc::Rc;
 
 /****** Using Box<T> to Point to Data on the Heap ******/
 fn basic_box() {
@@ -179,6 +180,34 @@ fn cleanup_with_drop_early() {
 }
 /******** End of Smart Pointer and Drop Traits ********/
 
+/*****  Using RC<T> to Allow Single Value have Multiple Owners *****/
+#[derive(Debug)]
+enum Sharable_List {
+    Cons(i32, Rc<Sharable_List>),
+    Nil
+}
+
+fn use_rc_to_share_cons_list() {
+    // Create a reference-counting pointer 'a' with Rc::new
+    let a = Rc::new(Sharable_List::Cons(5, 
+                Rc::new(Sharable_List::Cons(10, 
+                    Rc::new(Sharable_List::Nil)))));
+    println!("count after creating a = {}", Rc::strong_count(&a));
+
+    // Creates another pointer 'b' to the same allocation 'a' is pointing 
+    // to with Rc::clone
+    let b = Rc::new(Sharable_List::Cons(3, Rc::clone(&a)));
+    println!("count after creating b = {}", Rc::strong_count(&a));
+    {
+        // Creates another pointer 'c' to the same allocation 'a' is pointing 
+        // to with Rc::clone
+        let c = Rc::new(Sharable_List::Cons(4, Rc::clone(&a)));
+        println!("count after creating c = {}", Rc::strong_count(&a));
+    }
+    println!("count after c goes out of scope = {}", Rc::strong_count(&a));
+} // Last Rc pointer (a) to given allocation is destroyed, the value is dropped
+/** End of Using RC<T> to Allow Single Value have Multiple Owners **/
+
 pub fn run() {
     println!("1. Using Box<T> to Point to Data on the Heap");
     basic_box();
@@ -198,4 +227,7 @@ pub fn run() {
     println!("\n4. Smart Pointer and Drop Traits");
     impl_drop_traits_for_cleanup();
     cleanup_with_drop_early();
+
+    println!("\n5. Using RC<T> to Allow Single Value have Multiple Owners");
+    use_rc_to_share_cons_list();
 }
