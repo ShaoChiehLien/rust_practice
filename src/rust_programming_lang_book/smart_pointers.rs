@@ -45,7 +45,7 @@ fn box_as_reference() {
 }
 /** Treating Smart Pointers Like Regular References with the Deref Trait **/
 
-/************ Define our own Smart Pointer ************/
+/************ Smart Pointer and Deref Traits ************/
 struct MyBox<T>(T);
 
 impl<T> MyBox<T> {
@@ -75,7 +75,7 @@ fn define_our_own_smart_pointer() {
     assert_eq!(5, x);
     assert_eq!(5, *y);
 }
-/********* End of Define our own Smart Pointer *********/
+/******** End of Smart Pointer and Deref Traits ********/
 
 /************** Implicit Deref Coercions **************/
 impl<T> DerefMut for MyBox<T> {
@@ -129,6 +129,56 @@ fn advanced_implicit_deref_coercions() {
 }
 /********** End of Implicit Deref Coercions **********/
 
+/*********** Smart Pointer and Drop Traits ***********/
+struct CustomSmartPointer {
+    pub data: String,
+}
+
+impl Drop for CustomSmartPointer {
+    // drop traits accept mutable reference
+    fn drop(&mut self) {
+        println!("Dropping CustomSmartPointer with data: {}", self.data);
+    }
+}
+
+fn impl_drop_traits_for_cleanup() {
+    let my_stuff = CustomSmartPointer {
+        data: String::from("my stuff"),
+    };
+    let other_stuff = CustomSmartPointer {
+        data: String::from("other stuff"),
+    };
+    println!("CustomSmartPointers created");
+}
+
+fn my_drop(to_drop: CustomSmartPointer) {}
+
+fn cleanup_with_drop_early() {
+    let my_stuff = CustomSmartPointer {
+        data: String::from("my stuff"),
+    };
+    let other_stuff = CustomSmartPointer {
+        data: String::from("other stuff"),
+    };
+    println!("CustomSmartPointers created");
+
+    // my_stuff.drop(); 
+    // Error: drop method is called at the end of function
+    // Calling it here and at the end of cleanup_with_drop_early again will 
+    // result in "double free error"
+
+    drop(my_stuff);
+    // 1. drop take ownership of my_stuff
+    // 2. When drop function exist, it call my_stuff.drop
+    // This result in my_stuff successfully dropped early
+    my_drop(other_stuff);
+    // The function drop above can be acheived by any function that 
+    // take ownership and don't return
+
+    println!("CustomSmartPointer dropped before the end of main");
+}
+/******** End of Smart Pointer and Drop Traits ********/
+
 pub fn run() {
     println!("1. Using Box<T> to Point to Data on the Heap");
     basic_box();
@@ -138,10 +188,14 @@ pub fn run() {
     basic_pointer();
     box_as_reference();
 
-    println!("\n3. Define our own smart pointer");
+    println!("\n3. Smart Pointer and Deref Traits");
     define_our_own_smart_pointer();
 
-    println!("\n4. Example of implicit deref coerction");
+    println!("\n3.1 Example of implicit deref coerction");
     basic_implicit_deref_coercions();
     advanced_implicit_deref_coercions();
+
+    println!("\n4. Smart Pointer and Drop Traits");
+    impl_drop_traits_for_cleanup();
+    cleanup_with_drop_early();
 }
