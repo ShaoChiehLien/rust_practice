@@ -12,4 +12,4 @@ pub mod lifetimes;
 pub mod closures;
 pub mod fn_traits;
 pub mod iterator;
-pub mod smart_pointers;
+pub mod smart_pointers_a;

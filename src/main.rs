@@ -20,7 +20,7 @@ use rust_programming_lang_book::{ownership, borrow, slice, reference,
                         advanced_struct, advanced_string, hash_maps,
                         generic_types, traits, unsolved_question,
                         lifetimes, closures, fn_traits, iterator,
-                        smart_pointers};
+                        smart_pointers_a};
 
 // Entry Point
 fn main() {
@@ -81,8 +81,8 @@ fn main() {
         fn_traits::run();
     } else if command == "iterator.rs" {
         iterator::run();
-    } else if command == "smart_pointers.rs" {
-        smart_pointers::run();
+    } else if command == "smart_pointers_a.rs" {
+        smart_pointers_a::run();
     } else {
         println!("The script cannot be found!");
     }
