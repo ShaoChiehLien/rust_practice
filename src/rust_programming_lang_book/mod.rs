@@ -14,3 +14,4 @@ pub mod fn_traits;
 pub mod iterator;
 pub mod smart_pointers_a;
 pub mod smart_pointers_b;
+pub mod smart_pointers_c;
