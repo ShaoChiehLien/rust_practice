@@ -16,3 +16,4 @@ pub mod smart_pointers_a;
 pub mod smart_pointers_b;
 pub mod smart_pointers_c;
 pub mod smart_pointers_d;
+pub mod smart_pointers_e;
